@@ -197,7 +197,7 @@
 		888758A5253A767D0015D0A6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1410;
 				TargetAttributes = {
 					888758AC253A767D0015D0A6 = {
 						CreatedOnToolsVersion = 12.0.1;
@@ -342,6 +342,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -401,6 +402,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -429,6 +431,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = T8ALTGMVXN;
 				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = "iPA Patcher/Info.plist";
@@ -436,7 +439,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MARKETING_VERSION = "RC 1.0";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.brandonplank.iPA-Patcher";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -453,6 +456,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = T8ALTGMVXN;
 				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = "iPA Patcher/Info.plist";
@@ -460,7 +464,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MARKETING_VERSION = "RC 1.0";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.brandonplank.iPA-Patcher";
 				PRODUCT_NAME = "$(TARGET_NAME)";
