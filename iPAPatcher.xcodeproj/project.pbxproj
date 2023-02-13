@@ -101,9 +101,9 @@
 		8856CD012548C4E70019033B /* src */ = {
 			isa = PBXGroup;
 			children = (
-				8856CD082548C62C0019033B /* optool */,
-				8856CD022548C5380019033B /* patcher.m */,
 				8856CD072548C5550019033B /* patcher.h */,
+				8856CD022548C5380019033B /* patcher.m */,
+				8856CD082548C62C0019033B /* optool */,
 			);
 			path = src;
 			sourceTree = "<group>";

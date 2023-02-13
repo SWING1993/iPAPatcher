@@ -8,7 +8,7 @@
 #import <Cocoa/Cocoa.h>
 #include "patcher.h"
 
-void help(){
+void help() {
     printf("usage: iPAPatcher -c <../../app.ipa> <dylib|deb> <Directory/name.ipa>\n");
     exit(0);
 }

@@ -32,7 +32,7 @@ int patch_binary(NSString *app_binary, NSString* dylib_path){
     struct thin_header headers[4];
     uint32_t numHeaders = 0;
     headersFromBinary(headers, binary, &numHeaders);
-
+    
     if (numHeaders == 0) {
         if(DEBUG == DEBUG_ON){
             LOG("No compatible architecture found");
@@ -42,7 +42,7 @@ int patch_binary(NSString *app_binary, NSString* dylib_path){
     
     for (uint32_t i = 0; i < numHeaders; i++) {
         struct thin_header macho = headers[i];
-
+        
         NSString *lc = @"load";
         uint32_t command = LC_LOAD_DYLIB;
         if (lc)
@@ -53,7 +53,7 @@ int patch_binary(NSString *app_binary, NSString* dylib_path){
             }
             return IPAPATCHER_FAILURE;
         }
-
+        
         if (insertLoadEntryIntoBinary(dylib_path, binary, macho, command)) {
             if(DEBUG == DEBUG_ON){
                 LOG("Successfully inserted a %s command for %s", LC(command), CPU(macho.header.cputype));
@@ -242,7 +242,7 @@ int patch_ipa(NSString *ipa_path, NSMutableArray *dylib_or_deb, BOOL isDeb, BOOL
             STPrivilegedTask *privilegedTask = [STPrivilegedTask new];
             [privilegedTask setLaunchPath:DPKG_PATH];
             [privilegedTask setArguments:@[@"-x", @([[[NSString stringWithFormat:@"%@", dylib_or_deb[0]] stringByReplacingOccurrencesOfString:@"\n" withString:@""] UTF8String]), @([deb_insatll_temp UTF8String])]];
-
+            
             // Launch it, user is prompted for password
             OSStatus err = [privilegedTask launch];
             if (err == errAuthorizationSuccess) {
@@ -369,23 +369,23 @@ int patch_ipa(NSString *ipa_path, NSMutableArray *dylib_or_deb, BOOL isDeb, BOOL
         dispatch_async(dispatch_get_main_queue(), ^{
             NSSavePanel *panel = [NSSavePanel savePanel];
             // NSInteger result;
-
+            
             [panel setAllowedFileTypes:@[@"ipa"]];
             [panel beginWithCompletionHandler:^(NSInteger result){
-
-            //OK button pushed
-            if (result == NSFileHandlingPanelOKButton) {
-                // Close panel before handling errors
-
-                NSString *selected_path = [[panel URL] path];
-                        
-                NSString *ipa_path = [NSString stringWithFormat:@"%@/Payload.ipa", temp_path];
-                ASSERT([manager copyItemAtPath:ipa_path toPath:selected_path error:nil], @"Failed to copy ipa to user location.",
-                       true);
-                ASSERT([manager removeItemAtPath:temp_path error:nil], @"Failed to remove temp path", true);
-            }else{
-                ASSERT([manager removeItemAtPath:temp_path error:nil], @"Failed to remove temp path", true);
-            }}];
+                
+                //OK button pushed
+                if (result == NSModalResponseOK) {
+                    // Close panel before handling errors
+                    
+                    NSString *selected_path = [[panel URL] path];
+                    
+                    NSString *ipa_path = [NSString stringWithFormat:@"%@/Payload.ipa", temp_path];
+                    ASSERT([manager copyItemAtPath:ipa_path toPath:selected_path error:nil], @"Failed to copy ipa to user location.",
+                           true);
+                    ASSERT([manager removeItemAtPath:temp_path error:nil], @"Failed to remove temp path", true);
+                }else{
+                    ASSERT([manager removeItemAtPath:temp_path error:nil], @"Failed to remove temp path", true);
+                }}];
         });
     } else {
         NSString *ipa_path = [NSString stringWithFormat:@"%@/Payload.ipa", temp_path];

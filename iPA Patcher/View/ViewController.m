@@ -36,6 +36,7 @@ bool isDeb = false;
     [super setRepresentedObject:representedObject];
     // Update the view, if already loaded.
 }
+
 void Msg(NSString *message, BOOL error){
     NSAlert *alert = [[NSAlert alloc] init];
     if(error){
@@ -85,8 +86,6 @@ void Msg(NSString *message, BOOL error){
     NSOpenPanel *opendylib = [NSOpenPanel openPanel];
     [opendylib canChooseFiles];
     [opendylib setAllowsMultipleSelection:NO];
-    
-    
     if([opendylib runModal] == NSModalResponseOK){
         NSArray *urls = [opendylib URLs];
         for(int i=0; i<[urls count]; i++){
@@ -120,9 +119,11 @@ void Msg(NSString *message, BOOL error){
 }
 
 - (IBAction)build:(id)sender {
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         self.buildIPAOut.title = @"Patching.";
     });
+    
     if(patch_ipa(ipaPath, dylibPath, isDeb, false, NULL) != IPAPATCHER_SUCCESS){
         dispatch_async(dispatch_get_main_queue(), ^{
             Msg(@"The patching process has failed", true);
